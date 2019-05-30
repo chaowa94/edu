@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCoursesTable extends Migration
+class CreateAttachmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->comment('科目名'); 
-            $table->string('brief')->comment('简介');
-            $table->text('content')->comment('课程详情');
-            $table->integer('sort')->default(255)->comment('排序');
+            $table->integer('lesson_id')->index()->comment('索引');
+            $table->string('url')->comment('课程附件');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('attachments');
     }
 }
