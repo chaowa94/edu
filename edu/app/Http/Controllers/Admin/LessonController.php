@@ -4,82 +4,92 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Lesson;
+use App\Models\Attachment;
 
 class LessonController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 展示课程列表页面
+     * @param $id科目Course的id
+     * @return view()
      */
     public function index()
     {
-        //
+        $lesson=Lesson::all();
+        return view('',compact('lesson'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 显示新增课程表单
      *
-     * @return \Illuminate\Http\Response
+     * @return view()
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 储存新增课程
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return view(),boolean,$msg
      */
     public function store(Request $request)
     {
-        //
+        $lesson=new Lesson();
+        $course->create($request->all());
+        return view('');
     }
 
     /**
-     * Display the specified resource.
+     * 展示单个课程详情页
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view()
      */
     public function show($id)
     {
-        //
+        $lesson=Lesson::find($id);
+        $attachment=$lesson->attachment();
+        return view('',compact('lesson','attachment'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 显示课程修改页面
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view()
      */
     public function edit($id)
     {
-        //
+        return view('');
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新课程修改信息
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view(),boolean,$msg
      */
     public function update(Request $request, $id)
     {
-        //
+        $lesson=Lesson::find($id);
+        $lesson->create($request->all());
+        return view('');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除指定课程
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view(),boolean,$msg
      */
     public function destroy($id)
     {
-        //
+        Lesson::destroy($id);
+        return view();
     }
 }

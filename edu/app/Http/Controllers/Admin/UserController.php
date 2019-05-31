@@ -4,24 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Course;
-use App\Models\Lesson;
-use App\Models\Slider;
-class CourseController extends Controller
+use App\Models\User;
+
+class UserController extends Controller
 {
     /**
-     * 展示科目列表页面
+     * 展示用户列表页面
      *
      * @return view()
      */
     public function index()
     {
-        $course=Course::all();
-        return view('',compact('course'));
+        $user=User::all();
+        return view('',compact('user'));
     }
 
     /**
-     * 显示新增科目表单
+     * 显示新增用户表单
      *
      * @return view()
      */
@@ -31,34 +30,32 @@ class CourseController extends Controller
     }
 
     /**
-     * 储存新增科目
+     * 储存新增用户
      *
      * @param  \Illuminate\Http\Request  $request
      * @return view(),boolean,$msg
      */
     public function store(Request $request)
     {
-        $course=new Course();
-        $course->create($request->all());
+        $user=new User();
+        $user->create($request->all());
         return view('');
     }
 
-    /**lesson
-     * 展示单个科目详情页
+    /**
+     * 展示单个用户详情页
      *
      * @param  int  $id
      * @return view()
      */
     public function show($id)
     {
-        $course=Course::find($id);
-        $lesson=$course->lesson();
-        $slider=$course->slider();
-        return view('',compact('course','lesson','slider'));
+        $user=User::find($id);
+        return view('',compact('user'));
     }
 
     /**
-     * 显示科目修改页面
+     * 显示用户修改页面
      *
      * @param  int  $id
      * @return view()
@@ -69,7 +66,7 @@ class CourseController extends Controller
     }
 
     /**
-     * 更新科目修改信息
+     * 更新用户修改信息
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -77,20 +74,20 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $course=Course::find($id);
-        $course->create($request->all());
+        $user=User::find($id);
+        $user->create($request->all());
         return view('');
     }
 
     /**
-     * 删除指定科目
+     * 删除指定用户
      *
      * @param  int  $id
      * @return view(),boolean,$msg
      */
     public function destroy($id)
     {
-        Course::destroy($id);
+        User::destroy($id);
         return view();
     }
 }
